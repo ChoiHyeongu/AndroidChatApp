@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "69980870756",
+    "firebase_url": "https://androidchatapp-1342f.firebaseio.com",
+    "project_id": "androidchatapp-1342f",
+    "storage_bucket": "androidchatapp-1342f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:69980870756:android:263e09183b08702e",
+        "android_client_info": {
+          "package_name": "songpatechnicalhighschool.motivation.androidchatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "69980870756-8ro8ckvckn9jng4mhjb08vgdtbi77en5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "songpatechnicalhighschool.motivation.androidchatapp",
+            "certificate_hash": "faeb3460c734fe1e309c35425c4e7ad46e7b4db0"
+          }
+        },
+        {
+          "client_id": "69980870756-4n4ten273h4apfig1ip0n5v7g8ncp3jl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxK9CH2edxfqcDv5tG6lOBGSUMwrJZykA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "69980870756-4n4ten273h4apfig1ip0n5v7g8ncp3jl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
