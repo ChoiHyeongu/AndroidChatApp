@@ -28,6 +28,7 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import songpatechnicalhighschool.motivation.androidchatapp.Fragments.ChatsFragment;
+import songpatechnicalhighschool.motivation.androidchatapp.Fragments.ProfileFragment;
 import songpatechnicalhighschool.motivation.androidchatapp.Fragments.UsersFragment;
 import songpatechnicalhighschool.motivation.androidchatapp.Model.User;
 
@@ -76,10 +77,12 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLoyout = findViewById(R.id.tab_layout);
         ViewPager viewPager = findViewById(R.id.view_pager);
 
+
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         viewPagerAdapter.addFragment(new ChatsFragment(), "Chats");
         viewPagerAdapter.addFragment(new UsersFragment(), "Users");
+        viewPagerAdapter.addFragment(new ProfileFragment(), "Profile");
 
         viewPager.setAdapter(viewPagerAdapter);
 
