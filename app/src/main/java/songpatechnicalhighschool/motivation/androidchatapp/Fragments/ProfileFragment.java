@@ -74,6 +74,7 @@ public class ProfileFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
                 username.setText(user.getUsername());
+                Toast.makeText(getContext(), user.getUsername().toString(), Toast.LENGTH_SHORT).show();
                 if (user.getImageURL().equals("default")) {
                     image_profile.setImageResource(R.mipmap.ic_launcher);
                 } else {
@@ -96,10 +97,11 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        return view;
     }
 
     private void openImage() {
+        Toast.makeText(getContext(), "openImage", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -113,6 +115,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void uploadImage() {
+        Toast.makeText(getContext(), "uploadImage", Toast.LENGTH_SHORT).show();
         final ProgressDialog pd = new ProgressDialog(getContext());
         pd.setMessage("Uploads");
         pd.show();
@@ -133,7 +136,7 @@ public class ProfileFragment extends Fragment {
             }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                 @Override
                 public void onComplete(@NonNull Task<Uri> task) {
-                    if (!task.isSuccessful()) {
+                    if (task.isSuccessful()) {
                         Uri downloadUri = task.getResult();
                         String mUri = downloadUri.toString();
 
@@ -163,7 +166,8 @@ public class ProfileFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == IMAGE_REQUEST && requestCode == RESULT_OK && data != null && data.getData() != null) {
+        if (requestCode == IMAGE_REQUEST && resultCode == RESULT_OK
+                && data != null && data.getData() != null) {
             imageUri = data.getData();
             if (uploadsTask != null && uploadsTask.isInProgress()) {
                 Toast.makeText(getContext(), "Uploads in progress", Toast.LENGTH_SHORT).show();
