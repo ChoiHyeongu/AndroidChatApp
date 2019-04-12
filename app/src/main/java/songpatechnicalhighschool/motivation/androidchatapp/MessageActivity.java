@@ -54,6 +54,7 @@ public class MessageActivity extends AppCompatActivity {
     RecyclerView recyclerView;
 
     Intent intent;
+    String userid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +83,10 @@ public class MessageActivity extends AppCompatActivity {
         btn_send = findViewById(R.id.btn_send);
         text_send = findViewById(R.id.text_send);
 
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
         intent = getIntent();
-        final String userid = intent.getStringExtra("userid");
+        userid = intent.getStringExtra("userid");
 
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +105,6 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
 
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -139,6 +141,22 @@ public class MessageActivity extends AppCompatActivity {
         hashMap.put("sendTime", sendTime);
 
         databaseReference.child("Chats").push().setValue(hashMap);
+
+        final DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("Chatlist")
+                .child(firebaseUser.getUid())
+                .child(userid);
+
+        chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                chatRef.child("id").setValue(userid);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void readMessages(final String myid, final String userid, final String imageurl) {
